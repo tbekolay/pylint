@@ -21,3 +21,4 @@ debian/pylint
 .coverage
 .coverage.*
 .idea
+.eggs/

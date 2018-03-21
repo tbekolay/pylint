@@ -75,7 +75,7 @@ class BaseChecker(OptionsProviderMixIn):
     name = None
     # options level (0 will be displaying in --help, 1 in --long-help)
     level = 1
-    # ordered list of options to control the ckecker behaviour
+    # ordered list of options to control the checker behaviour
     options = ()
     # messages issued by this checker
     msgs = {}

@@ -242,6 +242,7 @@ MSGS = {
 
 
 DEFAULT_STANDARD_LIBRARY = ()
+DEFAULT_KNOWN_FIRST_PARTY = ()
 DEFAULT_KNOWN_THIRD_PARTY = ('enchant',)
 
 
@@ -305,6 +306,13 @@ class ImportsChecker(BaseChecker):
                  'metavar': '<modules>',
                  'help': 'Force import order to recognize a module as part of'
                          ' a third party library.'}
+               ),
+               ('known-first-party',
+                {'default': DEFAULT_KNOWN_FIRST_PARTY,
+                 'type': 'csv',
+                 'metavar': '<modules>',
+                 'help': 'Force import order to recognize a module as part of'
+                         ' a first party library.'}
                ),
                ('analyse-fallback-blocks',
                 {'default': False,
@@ -582,8 +590,9 @@ class ImportsChecker(BaseChecker):
         first_party_not_ignored = []
         local_not_ignored = []
         isort_obj = isort.SortImports(
-            file_contents='', known_third_party=self.config.known_third_party,
+            file_contents='', known_first_party=self.config.known_first_party,
             known_standard_library=self.config.known_standard_library,
+            default_section="THIRDPARTY",
         )
         for node, modname in self._imports_stack:
             if modname.startswith('.'):

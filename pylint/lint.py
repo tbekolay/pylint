@@ -775,6 +775,9 @@ class PyLinter(config.OptionsManagerMixIn,
         if not isinstance(files_or_modules, (list, tuple)):
             files_or_modules = (files_or_modules,)
 
+        from pylint.checkers import imports
+        imports.DEFAULT_KNOWN_FIRST_PARTY = files_or_modules
+
         if self.config.jobs == 1:
             self._do_check(files_or_modules)
         else:
